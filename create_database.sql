@@ -1,4 +1,5 @@
 -- tables to delete:
+
 -- customer demo
 -- customer demographics
 -- employees
@@ -59,16 +60,6 @@ CREATE TABLE categories (
 
 
 --
--- Name: customer_demographics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE customer_demographics (
-    customer_type_id bpchar NOT NULL PRIMARY KEY,
-    customer_desc text
-);
-
-
---
 -- Name: customers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -84,64 +75,6 @@ CREATE TABLE customers (
     country character varying(15),
     phone character varying(24),
     fax character varying(24)
-);
-
---
--- Name: customer_customer_demo; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE customer_customer_demo (
-    customer_id bpchar NOT NULL,
-    customer_type_id bpchar NOT NULL,
-    PRIMARY KEY (customer_id, customer_type_id),
-    FOREIGN KEY (customer_type_id) REFERENCES customer_demographics,
-    FOREIGN KEY (customer_id) REFERENCES customers
-);
-
---
--- Name: employees; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE employees (
-    employee_id smallint NOT NULL PRIMARY KEY,
-    last_name character varying(20) NOT NULL,
-    first_name character varying(10) NOT NULL,
-    title character varying(30),
-    title_of_courtesy character varying(25),
-    birth_date date,
-    hire_date date,
-    address character varying(60),
-    city character varying(15),
-    region character varying(15),
-    postal_code character varying(10),
-    country character varying(15),
-    home_phone character varying(24),
-    extension character varying(4),
-    photo bytea,
-    notes text,
-    reports_to smallint,
-    photo_path character varying(255),
-	FOREIGN KEY (reports_to) REFERENCES employees
-);
-
-
---
--- Name: suppliers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE suppliers (
-    supplier_id smallint NOT NULL PRIMARY KEY,
-    company_name character varying(40) NOT NULL,
-    contact_name character varying(30),
-    contact_title character varying(30),
-    address character varying(60),
-    city character varying(15),
-    region character varying(15),
-    postal_code character varying(10),
-    country character varying(15),
-    phone character varying(24),
-    fax character varying(24),
-    homepage text
 );
 
 
@@ -163,28 +96,6 @@ CREATE TABLE products (
 	FOREIGN KEY (category_id) REFERENCES categories,
 	FOREIGN KEY (supplier_id) REFERENCES suppliers
 );
-
-
---
--- Name: region; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE region (
-    region_id smallint NOT NULL PRIMARY KEY,
-    region_description bpchar NOT NULL
-);
-
-
---
--- Name: shippers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE shippers (
-    shipper_id smallint NOT NULL PRIMARY KEY,
-    company_name character varying(40) NOT NULL,
-    phone character varying(24)
-);
-
 
 --
 -- Name: orders; Type: TABLE; Schema: public; Owner: -; Tablespace: 
@@ -212,31 +123,6 @@ CREATE TABLE orders (
 
 
 --
--- Name: territories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE territories (
-    territory_id character varying(20) NOT NULL PRIMARY KEY,
-    territory_description bpchar NOT NULL,
-    region_id smallint NOT NULL,
-	FOREIGN KEY (region_id) REFERENCES region
-);
-
-
---
--- Name: employee_territories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE employee_territories (
-    employee_id smallint NOT NULL,
-    territory_id character varying(20) NOT NULL,
-    PRIMARY KEY (employee_id, territory_id),
-    FOREIGN KEY (territory_id) REFERENCES territories,
-    FOREIGN KEY (employee_id) REFERENCES employees
-);
-
-
---
 -- Name: order_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -251,14 +137,21 @@ CREATE TABLE order_details (
     FOREIGN KEY (order_id) REFERENCES orders
 );
 
-
 --
--- Name: us_states; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: suppliers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE us_states (
-    state_id smallint NOT NULL PRIMARY KEY,
-    state_name character varying(100),
-    state_abbr character varying(2),
-    state_region character varying(50)
+CREATE TABLE suppliers (
+    supplier_id smallint NOT NULL PRIMARY KEY,
+    company_name character varying(40) NOT NULL,
+    contact_name character varying(30),
+    contact_title character varying(30),
+    address character varying(60),
+    city character varying(15),
+    region character varying(15),
+    postal_code character varying(10),
+    country character varying(15),
+    phone character varying(24),
+    fax character varying(24),
+    homepage text
 );
