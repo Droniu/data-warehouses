@@ -18,6 +18,10 @@ CREATE TABLE customers (
     customer_id bpchar NOT NULL PRIMARY KEY,
     contact_name character varying(30),
     address character varying(60),
+    city character varying(60),
+    postcode character varying(60),
+    country character varying(60),
+    phone_number character varying(60),
 );
 
 CREATE TABLE products (
