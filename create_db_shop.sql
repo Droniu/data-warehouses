@@ -34,7 +34,8 @@ CREATE TABLE products (
 
 CREATE TABLE shops (
     shop_id smallint NOT NULL PRIMARY KEY,
-    shop_name varchar(30),
+    city varchar(30),
+    country varchar(30),
 );
 
 CREATE TABLE orders (
