@@ -13,13 +13,13 @@ DROP TABLE IF EXISTS interests;
 DROP TABLE IF EXISTS people;
 
 CREATE TABLE interests (
-    interest_id serial PRIMARY KEY,
+    interest_id smallint PRIMARY KEY,
     likes integer NOT NULL
     name character varying(30),
 );
 
 CREATE TABLE people (
-    person_id serial PRIMARY KEY,
+    person_id smallint PRIMARY KEY,
     name character varying(30),
     age integer,
     gender integer,

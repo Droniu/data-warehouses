@@ -32,11 +32,18 @@ CREATE TABLE products (
     discontinued integer NOT NULL,
 );
 
+CREATE TABLE shops (
+    shop_id smallint NOT NULL PRIMARY KEY,
+    shop_name varchar(30),
+);
+
 CREATE TABLE orders (
     order_id smallint NOT NULL PRIMARY KEY,
     customer_id bpchar,
+    shop_id smallint,
     order_date date,
     FOREIGN KEY (customer_id) REFERENCES customers,
+    FOREIGN KEY (shop_id) REFERENCES shops,
 );
 
 CREATE TABLE order_details (
