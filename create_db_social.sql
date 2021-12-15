@@ -14,17 +14,17 @@ DROP TABLE IF EXISTS people;
 
 CREATE TABLE interests (
     interest_id smallint PRIMARY KEY,
-    likes integer NOT NULL
-    name character varying(30),
+    likes integer NOT NULL,
+    interest_name character varying(30)
 );
 
 CREATE TABLE people (
     person_id smallint PRIMARY KEY,
-    name character varying(30),
+    person_name character varying(30),
     age integer,
     gender integer,
     education character varying(20),
     salary integer,
-    interest_id integer 
-    FOREIGN KEY (interest_id) REFERENCES interests,
+    interest_id integer,
+    FOREIGN KEY (interest_id) REFERENCES interests
 );

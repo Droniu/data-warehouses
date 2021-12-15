@@ -13,15 +13,16 @@ DROP TABLE IF EXISTS order_details;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS shops;
 
 CREATE TABLE customers (
     customer_id bpchar NOT NULL PRIMARY KEY,
     contact_name character varying(30),
-    address character varying(60),
+    street_address character varying(60),
     city character varying(60),
     postcode character varying(60),
     country character varying(60),
-    phone_number character varying(60),
+    phone_number character varying(60)
 );
 
 CREATE TABLE products (
@@ -29,13 +30,13 @@ CREATE TABLE products (
     product_name character varying(40) NOT NULL,
     quantity_per_unit character varying(20),
     unit_price real,
-    discontinued integer NOT NULL,
+    discontinued integer NOT NULL
 );
 
 CREATE TABLE shops (
     shop_id smallint NOT NULL PRIMARY KEY,
     city varchar(30),
-    country varchar(30),
+    country varchar(30)
 );
 
 CREATE TABLE orders (
@@ -44,7 +45,7 @@ CREATE TABLE orders (
     shop_id smallint,
     order_date date,
     FOREIGN KEY (customer_id) REFERENCES customers,
-    FOREIGN KEY (shop_id) REFERENCES shops,
+    FOREIGN KEY (shop_id) REFERENCES shops
 );
 
 CREATE TABLE order_details (
