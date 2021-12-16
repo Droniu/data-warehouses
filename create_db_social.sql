@@ -22,7 +22,7 @@ CREATE TABLE people (
     person_id smallint PRIMARY KEY,
     person_name character varying(30),
     age integer,
-    gender integer,
+    gender character varying(30),
     education character varying(20),
     salary integer,
     interest_id integer,

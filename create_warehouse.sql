@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS w_sales;
 CREATE TABLE w_products (
     id_product smallint NOT NULL PRIMARY KEY,
     price_class smallint,
-    availibility smallint,
+    availibility smallint
 );
 
 CREATE TABLE w_clients (
@@ -26,20 +26,20 @@ CREATE TABLE w_clients (
     education character varying(20),
     wealthiness smallint,
     age smallint,
-    interest character varying(20),
+    interest character varying(20)
 );
 
 CREATE TABLE W_shops (
     id_shop smallint NOT NULL PRIMARY KEY,
     city character varying(20),
-    country character varying(20),
+    country character varying(20)
 );
 
 CREATE TABLE w_dates (
     id_date smallint NOT NULL PRIMARY KEY,
     month smallint,
     quarter smallint,
-    year smallint,
+    year smallint
 );
 
 CREATE TABLE w_sales (
@@ -50,8 +50,8 @@ CREATE TABLE w_sales (
     price real,
     items_amount smallint,
     PRIMARY KEY (id_date, id_product, id_shop, id_client),
-    FOREIGN KEY (id_date) REFERENCES dates,
-    FOREIGN KEY (id_product) REFERENCES products,
-    FOREIGN KEY (id_shop) REFERENCES shops,
-    FOREIGN KEY (id_client) REFERENCES clients,
+    FOREIGN KEY (id_date) REFERENCES w_dates,
+    FOREIGN KEY (id_product) REFERENCES w_products,
+    FOREIGN KEY (id_shop) REFERENCES w_shops,
+    FOREIGN KEY (id_client) REFERENCES w_clients
 )
